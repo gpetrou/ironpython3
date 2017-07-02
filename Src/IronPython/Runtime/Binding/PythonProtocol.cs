@@ -159,7 +159,6 @@ namespace IronPython.Runtime.Binding {
             if (!typeof(Delegate).IsAssignableFrom(target.GetLimitType()) &&
                 pt.TryResolveSlot(pyContext.SharedContext, "__call__", out callSlot)) {
                 ConditionalBuilder cb = new ConditionalBuilder(call);
-                Expression body;
 
                 callSlot.MakeGetExpression(
                     pyContext.Binder,
@@ -179,7 +178,7 @@ namespace IronPython.Runtime.Binding {
                     DynamicUtils.GetExpressions(args)
                 );
 
-                body = DynamicExpression.Dynamic(
+                Expression body = DynamicExpression.Dynamic(
                     PythonContext.GetPythonContext(call).Invoke(
                         BindingHelpers.GetCallSignature(call)
                     ),

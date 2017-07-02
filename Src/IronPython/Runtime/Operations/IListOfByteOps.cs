@@ -1154,9 +1154,8 @@ namespace IronPython.Runtime.Operations {
                 return -1;
             }
 
-            int iStart, iEnd;
-            iStart = FixStart(bytes, start);
-            iEnd = FixEnd(bytes, end);
+            int iStart = FixStart(bytes, start);
+            int iEnd = FixEnd(bytes, end);
 
             if (iEnd < iStart) {
                 return -1;

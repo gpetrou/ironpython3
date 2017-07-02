@@ -707,9 +707,7 @@ namespace IronPython.Runtime {
 
 
         public static ByteArray/*!*/ operator +(Bytes/*!*/ self, ByteArray/*!*/ other) {
-            List<byte> bytes;
-
-            bytes = new List<byte>(self._bytes);
+            List<byte> bytes = new List<byte>(self._bytes);
             lock (other) {
                 bytes.AddRange(other);
             }

@@ -267,14 +267,13 @@ namespace IronPython.Runtime.Operations {
 
         private static BigInteger DivMod(BigInteger x, BigInteger y, out BigInteger r) {
             BigInteger rr;
-            BigInteger qq;
 
 #if !FEATURE_NUMERICS
             if (Object.ReferenceEquals(x, null)) throw PythonOps.TypeError("unsupported operands for div/mod: NoneType and long");
             if (Object.ReferenceEquals(y, null)) throw PythonOps.TypeError("unsupported operands for div/mod: long and NoneType");
 #endif
 
-            qq = BigInteger.DivRem(x, y, out rr);
+            BigInteger qq = BigInteger.DivRem(x, y, out rr);
 
             if (x >= BigInteger.Zero) {
                 if (y > BigInteger.Zero) {
@@ -458,8 +457,8 @@ namespace IronPython.Runtime.Operations {
 
         [SpecialName]
         public static PythonTuple DivMod(BigInteger x, BigInteger y) {
-            BigInteger div, mod;
-            div = DivMod(x, y, out mod);
+            BigInteger mod;
+            BigInteger div = DivMod(x, y, out mod);
             return PythonTuple.MakeTuple(div, mod);
         }
 

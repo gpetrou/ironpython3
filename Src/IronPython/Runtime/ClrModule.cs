@@ -333,8 +333,7 @@ the assembly object.")]
         /// Makes the type lib desc available for importing. See also LoadTypeLibrary.
         /// </summary>
         public static void AddReferenceToTypeLibrary(CodeContext/*!*/ context, object rcw) {
-            ComTypeLibInfo typeLibInfo;
-            typeLibInfo = ComTypeLibDesc.CreateFromObject(rcw);
+            ComTypeLibInfo typeLibInfo = ComTypeLibDesc.CreateFromObject(rcw);
             PublishTypeLibDesc(context, typeLibInfo.TypeLibDesc);
         }
 
@@ -344,8 +343,7 @@ the assembly object.")]
         /// Makes the type lib desc available for importing.  See also LoadTypeLibrary.
         /// </summary>
         public static void AddReferenceToTypeLibrary(CodeContext/*!*/ context, Guid typeLibGuid) {
-            ComTypeLibInfo typeLibInfo;
-            typeLibInfo = ComTypeLibDesc.CreateFromGuid(typeLibGuid);
+            ComTypeLibInfo typeLibInfo = ComTypeLibDesc.CreateFromGuid(typeLibGuid);
             PublishTypeLibDesc(context, typeLibInfo.TypeLibDesc);
         }
 
@@ -842,8 +840,6 @@ import Namespace.")]
                     throw PythonOps.IOError("Couldn't find file for compilation: {0}", filename);
                 }
 
-                ScriptCode sc;
-
                 string modName;
                 string dname = Path.GetDirectoryName(filename);
                 string outFilename = "";
@@ -879,7 +875,7 @@ import Namespace.")]
                     SourceCodeKind.File
                 );
 
-                sc = PythonContext.GetContext(context).GetScriptCode(su, modName, ModuleOptions.Initialize, Compiler.CompilationMode.ToDisk);
+                ScriptCode sc = PythonContext.GetContext(context).GetScriptCode(su, modName, ModuleOptions.Initialize, Compiler.CompilationMode.ToDisk);
 
                 code.Add((SavableScriptCode)sc);
             }

@@ -549,7 +549,6 @@ namespace IronPython.Runtime.Operations {
             }
 
             object ReadInt () {
-                
                 // bytes not present are treated as being -1
                 byte b1 = ReadIntPart ();
                 byte b2 = ReadIntPart ();

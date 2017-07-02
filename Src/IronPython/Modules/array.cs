@@ -468,12 +468,12 @@ namespace IronPython.Modules {
                     step = -step;
                 }
 
-                int curr, skip, move;
                 // skip: the next position we should skip
                 // curr: the next position we should fill in data
                 // move: the next position we will check
-                curr = skip = move = start;
-
+                int curr = start;
+                int skip = start;
+                int move = start;
                 while (curr < stop && move < stop) {
                     if (move != skip) {
                         _data.SetData(curr++, _data.GetData(move));
@@ -773,9 +773,8 @@ namespace IronPython.Modules {
 
             // br.ReadChar() doesn't read 16-bit chars, it reads 8-bit chars.
             private static object ReadBinaryChar(BinaryReader br) {
-                object value;
                 byte byteVal = br.ReadByte();
-                value = (char)((br.ReadByte() << 8) | byteVal);
+                object value = (char)((br.ReadByte() << 8) | byteVal);
                 return value;
             }
 

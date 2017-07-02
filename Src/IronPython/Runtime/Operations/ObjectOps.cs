@@ -401,10 +401,9 @@ namespace IronPython.Runtime.Operations {
         private static PythonTuple ReduceProtocol2(CodeContext/*!*/ context, object self) {
             PythonType myType = DynamicHelpers.GetPythonType(self);
 
-            object func, state, listIterator, dictIterator;
             object[] funcArgs;
 
-            func = PythonContext.GetContext(context).NewObject;
+            object func = PythonContext.GetContext(context).NewObject;
 
             object getNewArgsCallable;
             if (PythonOps.TryGetBoundAttr(context, myType, "__getnewargs__", out getNewArgsCallable)) {
@@ -420,6 +419,7 @@ namespace IronPython.Runtime.Operations {
                 funcArgs = new object[] { myType };
             }
 
+            object state;
             if (!PythonTypeOps.TryInvokeUnaryOperator(context,
                     self,
                     "__getstate__",
@@ -443,12 +443,12 @@ namespace IronPython.Runtime.Operations {
                 else   /*dict == null && initializedSlotValues != null*/ state = PythonTuple.MakeTuple(null, initializedSlotValues);
             }
 
-            listIterator = null;
+            object listIterator = null;
             if (self is List) {
                 listIterator = PythonOps.GetEnumerator(self);
             }
 
-            dictIterator = null;
+            object dictIterator = null;
             if (self is PythonDictionary) {
                 dictIterator = PythonOps.Invoke(context, self, "iteritems", ArrayUtils.EmptyObjects);
             }

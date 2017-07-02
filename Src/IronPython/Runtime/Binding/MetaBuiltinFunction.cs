@@ -185,7 +185,6 @@ namespace IronPython.Runtime.Binding {
                 selfRestrict,
                 (newArgs) => {
                     CallSignature signature = BindingHelpers.GetCallSignature(call);
-                    DynamicMetaObject res;
                     PythonContext state = PythonContext.GetPythonContext(call);
                     BindingTarget target;
                     PythonOverloadResolver resolver;
@@ -206,7 +205,7 @@ namespace IronPython.Runtime.Binding {
                         );
                     }
 
-                    res = state.Binder.CallMethod(
+                    DynamicMetaObject res = state.Binder.CallMethod(
                         resolver, 
                         Value.Targets, 
                         self.Restrictions, 

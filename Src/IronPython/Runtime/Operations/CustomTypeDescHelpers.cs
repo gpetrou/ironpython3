@@ -97,11 +97,9 @@ namespace IronPython.Runtime.Operations {
                     if (s == null) continue;
 
                     PythonTypeSlot attrSlot = null;
-                    object attrVal;
-
                     PythonType dt = DynamicHelpers.GetPythonType(self);
                     dt.TryResolveSlot(DefaultContext.DefaultCLS, s, out attrSlot);
-                    attrVal = ObjectOps.__getattribute__(DefaultContext.DefaultCLS, self, s);
+                    object attrVal = ObjectOps.__getattribute__(DefaultContext.DefaultCLS, self, s);
 
                     Type attrType = (attrVal == null) ? typeof(NoneTypeOps) : attrVal.GetType();
 
