@@ -156,19 +156,19 @@ namespace IronPython.Runtime {
             return hash;
         }
 
-        public bool __lt__(Range other) {
+        public static bool __lt__(Range other) {
             throw new TypeErrorException("unorderable types: range() < range()");
         }
 
-        public bool __le__(Range other) {
+        public static bool __le__(Range other) {
             throw new TypeErrorException("unorderable types: range() <= range()");
         }
 
-        public bool __gt__(Range other) {
+        public static bool __gt__(Range other) {
             throw new TypeErrorException("unorderable types: range() > range()");
         }
 
-        public bool __ge__(Range other) {
+        public static bool __ge__(Range other) {
             throw new TypeErrorException("unorderable types: range() >= range()");
         }
 

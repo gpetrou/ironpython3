@@ -122,7 +122,7 @@ namespace IronPython.Runtime.Binding {
             return base.BindDelegate(site, args);
         }
 
-        private object IntNegate(CallSite site, object value) {
+        private static object IntNegate(CallSite site, object value) {
             if (value is int) {
                 return Int32Ops.Negate((int)value);
             }
@@ -142,7 +142,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, bool>>)site).Update(site, value);
         }
 
-        private bool ListIsFalse(CallSite site, object value) {
+        private static bool ListIsFalse(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(List)) {
                 return ((List)value).Count == 0;
             } else if (value == null) {
@@ -153,7 +153,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, bool>>)site).Update(site, value);
         }
 
-        private bool NoneIsFalse(CallSite site, object value) {
+        private static bool NoneIsFalse(CallSite site, object value) {
             if (value == null) {
                 return true;
             }
@@ -161,7 +161,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, bool>>)site).Update(site, value);
         }
 
-        private bool IntIsFalse(CallSite site, object value) {
+        private static bool IntIsFalse(CallSite site, object value) {
             if (value is int) {
                 return (int)value == 0;
             } else if (value == null) {
@@ -172,7 +172,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, bool>>)site).Update(site, value);
         }
 
-        private bool TupleIsFalse(CallSite site, object value) {
+        private static bool TupleIsFalse(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(PythonTuple)) {
                 return ((PythonTuple)value).Count == 0;
             } else if (value == null) {
@@ -183,7 +183,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, bool>>)site).Update(site, value);
         }
 
-        private bool BoolIsFalse(CallSite site, object value) {
+        private static bool BoolIsFalse(CallSite site, object value) {
             if (value is bool) {
                 return !(bool)value;
             } else if (value == null) {
@@ -194,7 +194,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, bool>>)site).Update(site, value);
         }
 
-        private object StringNot(CallSite site, object value) {
+        private static object StringNot(CallSite site, object value) {
             string strVal = value as string;
             if (strVal != null) {
                 return strVal.Length == 0 ? ScriptingRuntimeHelpers.True : ScriptingRuntimeHelpers.False;
@@ -206,7 +206,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object>>)site).Update(site, value);
         }
 
-        private object ListNot(CallSite site, object value) {
+        private static object ListNot(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(List)) {
                 return ((List)value).Count == 0 ? ScriptingRuntimeHelpers.True : ScriptingRuntimeHelpers.False;
             } else if (value == null) {
@@ -217,7 +217,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object>>)site).Update(site, value);
         }
 
-        private object NoneNot(CallSite site, object value) {
+        private static object NoneNot(CallSite site, object value) {
             if (value == null) {
                 return ScriptingRuntimeHelpers.True;
             }
@@ -225,7 +225,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object>>)site).Update(site, value);
         }
 
-        private object TupleNot(CallSite site, object value) {
+        private static object TupleNot(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(PythonTuple)) {
                 return ((PythonTuple)value).Count == 0 ? ScriptingRuntimeHelpers.True : ScriptingRuntimeHelpers.False;
             } else if (value == null) {
@@ -236,7 +236,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object>>)site).Update(site, value);
         }
 
-        private object BoolNot(CallSite site, object value) {
+        private static object BoolNot(CallSite site, object value) {
             if (value is bool) {
                 return !(bool)value ? ScriptingRuntimeHelpers.True : ScriptingRuntimeHelpers.False;
             } else if (value == null) {
@@ -247,7 +247,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object>>)site).Update(site, value);
         }
 
-        private object IntNot(CallSite site, object value) {
+        private static object IntNot(CallSite site, object value) {
             if (value is int) {
                 return (int)value == 0 ? ScriptingRuntimeHelpers.True : ScriptingRuntimeHelpers.False;
             } else if (value == null) {

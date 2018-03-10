@@ -10,7 +10,7 @@ using IronPython.Runtime.Exceptions;
 using IronPython.Runtime.Types;
 
 namespace IronPython.Runtime.Operations {
-    public class MarshalOps {
+    public static class MarshalOps {
         public static byte[] GetBytes (object o, int version) {
             MarshalWriter mw = new MarshalWriter (version);
             mw.WriteObject (o);
@@ -21,7 +21,6 @@ namespace IronPython.Runtime.Operations {
             MarshalReader mr = new MarshalReader (bytes);
             return mr.ReadObject ();
         }
-
 
         //
         // Format 
@@ -537,7 +536,7 @@ namespace IronPython.Runtime.Operations {
                 }
             }
 
-            private string DecodeString (Encoding enc, byte[] bytes) {
+            private static string DecodeString (Encoding enc, byte[] bytes) {
                 return enc.GetString (bytes, 0, bytes.Length);
             }
 

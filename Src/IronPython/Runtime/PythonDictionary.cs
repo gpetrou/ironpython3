@@ -1196,7 +1196,7 @@ namespace IronPython.Runtime {
         #region Pickling
 
         // TODO: this is not technically correct, it should be throwing in ObjectOps.ReduceProtocol2
-        public object __reduce__(CodeContext context) => throw PythonOps.TypeError($"can't pickle dict_values objects");
+        public static object __reduce__(CodeContext context) => throw PythonOps.TypeError($"can't pickle dict_values objects");
 
         #endregion
     }
@@ -1555,7 +1555,7 @@ namespace IronPython.Runtime {
         #region Pickling
 
         // TODO: this is not technically correct, it should be throwing in ObjectOps.ReduceProtocol2
-        public object __reduce__(CodeContext context) => throw PythonOps.TypeError($"can't pickle dict_keys objects");
+        public static object __reduce__(CodeContext context) => throw PythonOps.TypeError($"can't pickle dict_keys objects");
 
         #endregion
 
@@ -1917,7 +1917,7 @@ namespace IronPython.Runtime {
         #region Pickling
 
         // TODO: this is not technically correct, it should be throwing in ObjectOps.ReduceProtocol2
-        public object __reduce__(CodeContext context) => throw PythonOps.TypeError($"can't pickle dict_items objects");
+        public static object __reduce__(CodeContext context) => throw PythonOps.TypeError($"can't pickle dict_items objects");
 
         #endregion
 

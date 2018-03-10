@@ -80,7 +80,7 @@ namespace IronPython.Runtime.Binding {
             return base.BindDelegate<T>(site, args);
         }
 
-        private object ListIndex(CallSite site, List target, object index) {
+        private static object ListIndex(CallSite site, List target, object index) {
             if (target != null && index != null && index.GetType() == typeof(int)) {
                 return target[(int)index];
             }
@@ -88,7 +88,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, List, object, object>>)site).Update(site, target, index);
         }
 
-        private object ListIndex(CallSite site, object target, object index) {
+        private static object ListIndex(CallSite site, object target, object index) {
             // using as is ok here because [] is virtual and will call the user method if
             // we have a user defined subclass of list.
             List lst = target as List;
@@ -99,7 +99,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object, object>>)site).Update(site, target, index);
         }
 
-        private object ListIndex(CallSite site, object target, int index) {
+        private static object ListIndex(CallSite site, object target, int index) {
             List lst = target as List;
             if (lst != null) {
                 return lst[index];
@@ -108,7 +108,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, int, object>>)site).Update(site, target, index);
         }
 
-        private object TupleIndex(CallSite site, PythonTuple target, object index) {
+        private static object TupleIndex(CallSite site, PythonTuple target, object index) {
             if (target != null && index != null && index.GetType() == typeof(int)) {
                 return target[(int)index];
             }
@@ -116,7 +116,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, PythonTuple, object, object>>)site).Update(site, target, index);
         }
 
-        private object TupleIndex(CallSite site, object target, object index) {
+        private static object TupleIndex(CallSite site, object target, object index) {
             PythonTuple lst = target as PythonTuple;
             if (lst != null && index != null && index.GetType() == typeof(int)) {
                 return lst[(int)index];
@@ -125,7 +125,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object, object>>)site).Update(site, target, index);
         }
 
-        private object TupleIndex(CallSite site, object target, int index) {
+        private static object TupleIndex(CallSite site, object target, int index) {
             PythonTuple lst = target as PythonTuple;
             if (lst != null) {
                 return lst[index];
@@ -134,7 +134,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, int, object>>)site).Update(site, target, index);
         }
 
-        private object StringIndex(CallSite site, string target, object index) {
+        private static object StringIndex(CallSite site, string target, object index) {
             if (target != null && index != null && index.GetType() == typeof(int)) {
                 return StringOps.GetItem(target, (int)index);
             }
@@ -142,7 +142,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, string, object, object>>)site).Update(site, target, index);
         }
 
-        private object StringIndex(CallSite site, object target, object index) {
+        private static object StringIndex(CallSite site, object target, object index) {
             string str = target as string;
             if (str != null && index != null && index.GetType() == typeof(int)) {
                 return StringOps.GetItem(str, (int)index);
@@ -151,7 +151,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object, object>>)site).Update(site, target, index);
         }
 
-        private object StringIndex(CallSite site, object target, int index) {
+        private static object StringIndex(CallSite site, object target, int index) {
             string str = target as string;
             if (str != null) {
                 return StringOps.GetItem(str, index);

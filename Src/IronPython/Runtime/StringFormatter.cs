@@ -740,12 +740,12 @@ namespace IronPython.Runtime {
         //  format string "e16" ==> "9.3126672485384569e+023", but we want "e+23", not "e+023"
         //  format string "0.0000000000000000e+00" ==> "9.3126672485384600e+23", which is a precision error
         //  so, we have to format with "e16" and strip the zero manually
-        private string adjustExponent(string val) {
+        private static string adjustExponent(string val) {
             if (val[val.Length - 3] == '0') {
                 return val.Substring(0, val.Length - 3) + val.Substring(val.Length - 2, 2);
-            } else {
-                return val;
             }
+
+            return val;
         }
 
         private void AppendLeftAdj(object val, bool fPos, char type) {

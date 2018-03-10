@@ -572,7 +572,7 @@ namespace IronPython.Runtime.Binding {
 
             protected override void AddError() {
                 if (_binder.IsNoThrow) {
-                    _gets.Add(new ErrorBinder(_binder.Name).TargetNoThrow);
+                    _gets.Add(ErrorBinder.TargetNoThrow);
                 } else {
                     _gets.Add(new ErrorBinder(_binder.Name).Target);
                 }
@@ -665,7 +665,7 @@ namespace IronPython.Runtime.Binding {
                     _name = name;
                 }
 
-                public bool TargetNoThrow(CodeContext context, object self, out object result) {
+                public static bool TargetNoThrow(CodeContext context, object self, out object result) {
                     result = OperationFailed.Value;
                     return true;
                 }

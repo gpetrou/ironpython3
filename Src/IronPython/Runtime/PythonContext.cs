@@ -1618,14 +1618,14 @@ namespace IronPython.Runtime
             return result.ToString();
         }
 
-        private void PrintHeader(ref StringBuilder result, ref bool printedHeader) {
+        private static void PrintHeader(ref StringBuilder result, ref bool printedHeader) {
             if (!printedHeader) {
                 result.AppendLine("Traceback (most recent call last):");
                 printedHeader = true;
             }
         }
 
-        internal string FormatStackTraceNoDetail(Exception e, ref bool printedHeader) {
+        internal static string FormatStackTraceNoDetail(Exception e, ref bool printedHeader) {
             var pythonException = e.GetPythonException() as PythonExceptions.BaseException;
             StringBuilder result = new StringBuilder();
 
@@ -1717,7 +1717,7 @@ namespace IronPython.Runtime
             }
         }
 
-        internal PythonCompilerOptions GetPythonCompilerOptions() {
+        internal static PythonCompilerOptions GetPythonCompilerOptions() {
             return new PythonCompilerOptions(ModuleOptions.None);
         }
 

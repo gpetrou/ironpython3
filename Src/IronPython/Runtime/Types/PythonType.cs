@@ -2199,7 +2199,7 @@ type(name, bases, dict) -> creates a new type instance with the given name, base
             }
         }
 
-        private bool CheckForSlotWithDefault(CodeContext context, IList<PythonType> resolutionOrder, List<string> slots, string name) {
+        private static bool CheckForSlotWithDefault(CodeContext context, IList<PythonType> resolutionOrder, List<string> slots, string name) {
             // slots not restricted
             if (slots == null)
                 return true;

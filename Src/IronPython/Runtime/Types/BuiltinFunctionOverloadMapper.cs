@@ -136,7 +136,7 @@ namespace IronPython.Runtime.Types {
         /// Convert.ToInt32.Overloads[Double, Double](24)
         /// ]]></code>
         /// </example>
-        public void ThrowOverloadException(Type[] sig, IList<MethodBase> targets) {
+        public static void ThrowOverloadException(Type[] sig, IList<MethodBase> targets) {
             // Create info for given signature
             System.Text.StringBuilder sigInfo = new System.Text.StringBuilder();
             sigInfo.Append((targets.Count > 0 ? targets[0].Name : "") + "[");

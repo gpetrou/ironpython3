@@ -712,7 +712,7 @@ namespace IronPython.Compiler {
             }
         }
 
-        private PythonOperator GetAssignOperator(Token t) {
+        private static PythonOperator GetAssignOperator(Token t) {
             switch (t.Kind) {
                 case TokenKind.AddEqual: return PythonOperator.Add;
                 case TokenKind.SubtractEqual: return PythonOperator.Subtract;
@@ -731,7 +731,7 @@ namespace IronPython.Compiler {
         }
 
 
-        private PythonOperator GetBinaryOperator(OperatorToken token) {
+        private static PythonOperator GetBinaryOperator(OperatorToken token) {
             switch (token.Kind) {
                 case TokenKind.Add: return PythonOperator.Add;
                 case TokenKind.Subtract: return PythonOperator.Subtract;

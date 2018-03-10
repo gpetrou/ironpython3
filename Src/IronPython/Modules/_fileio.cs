@@ -50,7 +50,7 @@ namespace IronPython.Modules {
         public class FileIO : _RawIOBase, IDisposable, IWeakReferenceable, ICodeFormattable, IDynamicMetaObjectProvider {
             #region Fields and constructors
 
-            private static readonly int DEFAULT_BUF_SIZE = 32;
+            private const int DEFAULT_BUF_SIZE = 32;
 
             private Stream _readStream;
             private Stream _writeStream;

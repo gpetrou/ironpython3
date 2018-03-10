@@ -1723,7 +1723,7 @@ Noteworthy: None is the `nil' object; Ellipsis represents `...' in slices.";
             if (inheritContext) {
                 pco = new PythonCompilerOptions(context.ModuleContext.Features);
             } else {
-                pco = DefaultContext.DefaultPythonContext.GetPythonCompilerOptions();
+                pco = PythonContext.GetPythonCompilerOptions();
             }
             
             ModuleOptions langFeat = ModuleOptions.None;

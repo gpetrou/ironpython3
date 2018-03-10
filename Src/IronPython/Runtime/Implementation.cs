@@ -4,7 +4,7 @@ using IronPython.Runtime.Operations;
 namespace IronPython.Runtime {
     [PythonHidden, PythonType("sys.implementation")]
     public class Implementation {
-        internal static readonly string _Name = "IronPython";
+        internal const string _Name = "IronPython";
         internal static readonly string _name = _Name.ToLowerInvariant();
         internal static readonly VersionInfo _version = new VersionInfo();
         internal static readonly int _hexversion = _version.GetHexVersion();

@@ -284,7 +284,7 @@ namespace IronPython.Compiler.Ast {
             }
         }
 
-        private bool CanEmitWarning(PythonOperator op) {
+        private static bool CanEmitWarning(PythonOperator op) {
             return false;
         }
 

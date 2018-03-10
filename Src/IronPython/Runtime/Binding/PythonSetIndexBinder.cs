@@ -65,7 +65,7 @@ namespace IronPython.Runtime.Binding {
             return base.BindDelegate(site, args);
         }
         
-        private object DictAssign(CallSite site, object dict, object key, object value) {
+        private static object DictAssign(CallSite site, object dict, object key, object value) {
             if (dict != null && dict.GetType() == typeof(PythonDictionary)) {
                 ((PythonDictionary)dict)[key] = value;
                 return value;

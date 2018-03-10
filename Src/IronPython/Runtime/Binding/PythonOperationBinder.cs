@@ -138,11 +138,11 @@ namespace IronPython.Runtime.Binding {
             return base.BindDelegate<T>(site, args);
         }
 
-        private KeyValuePair<IEnumerator, IDisposable> GetListEnumerator(CallSite site, List value) {
+        private static KeyValuePair<IEnumerator, IDisposable> GetListEnumerator(CallSite site, List value) {
             return new KeyValuePair<IEnumerator,IDisposable>(new ListIterator(value), null);
         }
 
-        private KeyValuePair<IEnumerator, IDisposable> GetListEnumerator(CallSite site, object value) {
+        private static KeyValuePair<IEnumerator, IDisposable> GetListEnumerator(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(List)) {
                 return new KeyValuePair<IEnumerator,IDisposable>(new ListIterator((List)value), null);
             }
@@ -150,11 +150,11 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, KeyValuePair<IEnumerator, IDisposable>>>)site).Update(site, value);
         }
 
-        private KeyValuePair<IEnumerator, IDisposable> GetTupleEnumerator(CallSite site, PythonTuple value) {
+        private static KeyValuePair<IEnumerator, IDisposable> GetTupleEnumerator(CallSite site, PythonTuple value) {
             return new KeyValuePair<IEnumerator,IDisposable>(new TupleEnumerator(value), null);
         }
 
-        private KeyValuePair<IEnumerator, IDisposable> GetTupleEnumerator(CallSite site, object value) {
+        private static KeyValuePair<IEnumerator, IDisposable> GetTupleEnumerator(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(PythonTuple)) {
                 return new KeyValuePair<IEnumerator, IDisposable>(new TupleEnumerator((PythonTuple)value), null);
             }
@@ -162,11 +162,11 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, KeyValuePair<IEnumerator, IDisposable>>>)site).Update(site, value);
         }
 
-        private bool ListContains(CallSite site, object other, List value) {
+        private static bool ListContains(CallSite site, object other, List value) {
             return value.ContainsWorker(other);
         }
 
-        private bool ListContains<TOther>(CallSite site, TOther other, object value) {
+        private static bool ListContains<TOther>(CallSite site, TOther other, object value) {
             if (value != null && value.GetType() == typeof(List)) {
                 return ((List)value).ContainsWorker(other);
             }
@@ -174,11 +174,11 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, TOther, object, bool>>)site).Update(site, other, value);
         }
 
-        private bool TupleContains(CallSite site, object other, PythonTuple value) {
+        private static bool TupleContains(CallSite site, object other, PythonTuple value) {
             return value.Contains(other);
         }
 
-        private bool TupleContains<TOther>(CallSite site, TOther other, object value) {
+        private static bool TupleContains<TOther>(CallSite site, TOther other, object value) {
             if (value != null && value.GetType() == typeof(PythonTuple)) {
                 return ((PythonTuple)value).Contains(other);
             }
@@ -186,7 +186,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, TOther, object, bool>>)site).Update(site, other, value);
         }
 
-        private bool StringContains(CallSite site, string other, string value) {
+        private static bool StringContains(CallSite site, string other, string value) {
             if (other != null && value != null) {
                 return StringOps.__contains__(value, other);
             }
@@ -194,7 +194,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, string, string, bool>>)site).Update(site, other, value);
         }
 
-        private bool StringContains(CallSite site, object other, string value) {
+        private static bool StringContains(CallSite site, object other, string value) {
             if (other is string && value != null) {
                 return StringOps.__contains__(value, (string)other);
             }
@@ -202,7 +202,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, string, bool>>)site).Update(site, other, value);
         }
 
-        private bool StringContains(CallSite site, string other, object value) {
+        private static bool StringContains(CallSite site, string other, object value) {
             if (value is string && other != null) {
                 return StringOps.__contains__((string)value, other);
             }
@@ -210,7 +210,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, string, object, bool>>)site).Update(site, other, value);
         }
 
-        private bool StringContains(CallSite site, object other, object value) {
+        private static bool StringContains(CallSite site, object other, object value) {
             if (value is string && other is string) {
                 return StringOps.__contains__((string)value, (string)other);
             }
@@ -218,7 +218,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object, bool>>)site).Update(site, other, value);
         }
 
-        private bool SetContains(CallSite site, object other, object value) {
+        private static bool SetContains(CallSite site, object other, object value) {
             if (value != null && value.GetType() == typeof(SetCollection)) {
                 return ((SetCollection)value).__contains__(other);
             }
@@ -226,7 +226,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, object, bool>>)site).Update(site, other, value);
         }
 
-        private int HashPythonType(CallSite site, object value) {
+        private static int HashPythonType(CallSite site, object value) {
             if (value != null && value.GetType() == typeof(PythonType)) {
                 return value.GetHashCode();
             }
@@ -234,7 +234,7 @@ namespace IronPython.Runtime.Binding {
             return ((CallSite<Func<CallSite, object, int>>)site).Update(site, value);
         }
 
-        private int CompareStrings(CallSite site, object arg0, object arg1) {
+        private static int CompareStrings(CallSite site, object arg0, object arg1) {
             if (arg0 != null && arg0.GetType() == typeof(string) &&
                 arg1 != null && arg1.GetType() == typeof(string)) {
                 return StringOps.Compare((string)arg0, (string)arg1);

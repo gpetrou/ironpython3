@@ -131,11 +131,11 @@ namespace IronPython.Runtime.Binding {
                             // need to return the built in method descriptor for these...
                             break;
                         case "__file__":
-                            return (T)(object)new Func<CallSite, object, CodeContext, object>(new NamespaceTrackerDelegate(_name).GetFile);
+                            return (T)(object)new Func<CallSite, object, CodeContext, object>(NamespaceTrackerDelegate.GetFile);
                         case "__dict__":
-                            return (T)(object)new Func<CallSite, object, CodeContext, object>(new NamespaceTrackerDelegate(_name).GetDict);
+                            return (T)(object)new Func<CallSite, object, CodeContext, object>(NamespaceTrackerDelegate.GetDict);
                         case "__name__":
-                            return (T)(object)new Func<CallSite, object, CodeContext, object>(new NamespaceTrackerDelegate(_name).GetName);
+                            return (T)(object)new Func<CallSite, object, CodeContext, object>(NamespaceTrackerDelegate.GetName);
                         default:
                             if (IsNoThrow) {
                                 return (T)(object)new Func<CallSite, object, CodeContext, object>(new NamespaceTrackerDelegate(_name).NoThrowTarget);
@@ -530,7 +530,7 @@ namespace IronPython.Runtime.Binding {
                 return Update(site, self, context);
             }
 
-            public object GetName(CallSite site, object self, CodeContext context) {
+            public static object GetName(CallSite site, object self, CodeContext context) {
                 if (self != null && self.GetType() == typeof(NamespaceTracker)) {
                     return NamespaceTrackerOps.Get__name__(context, (NamespaceTracker)self);
                 }
@@ -538,7 +538,7 @@ namespace IronPython.Runtime.Binding {
                 return Update(site, self, context);
             }
 
-            public object GetFile(CallSite site, object self, CodeContext context) {
+            public static object GetFile(CallSite site, object self, CodeContext context) {
                 if (self != null && self.GetType() == typeof(NamespaceTracker)) {
                     return NamespaceTrackerOps.Get__file__((NamespaceTracker)self);
                 }
@@ -546,7 +546,7 @@ namespace IronPython.Runtime.Binding {
                 return Update(site, self, context);
             }
 
-            public object GetDict(CallSite site, object self, CodeContext context) {
+            public static object GetDict(CallSite site, object self, CodeContext context) {
                 if (self != null && self.GetType() == typeof(NamespaceTracker)) {
                     return NamespaceTrackerOps.Get__dict__(context, (NamespaceTracker)self);
                 }
