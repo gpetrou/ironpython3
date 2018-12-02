@@ -1291,7 +1291,7 @@ namespace IronPython.Modules {
                 throw PythonOps.TypeError("expected string, got None");
             }
             host = host.Trim();
-            if (host == string.Empty || host == "0.0.0.0") {
+            if (host.Length == 0 || host == "0.0.0.0") {
                 host = gethostname();
             }
 
@@ -1383,7 +1383,7 @@ namespace IronPython.Modules {
             + "be either a hostname or an IP address."
             )]
         public static object gethostbyaddr(CodeContext/*!*/ context, string host) {
-            if (host == "") {
+            if (string.IsNullOrEmpty(host)) {
                 host = gethostname();
             }
             // This conversion seems to match CPython behavior

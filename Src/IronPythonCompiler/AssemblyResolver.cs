@@ -138,14 +138,13 @@ namespace IronPythonCompiler {
             string[] files = new string[0];
             try {
                 string path = Path.GetDirectoryName(reference);
-                files = Directory.GetFiles(path == "" ? "." : path, Path.GetFileName(reference));
+                files = Directory.GetFiles(path.Length == 0 ? "." : path, Path.GetFileName(reference));
             } catch (ArgumentException) {
             } catch (IOException) {
             }
 
             if (files.Length == 0) {
-                Assembly asm = null;
-                cache.TryGetValue(reference, out asm);
+                cache.TryGetValue(reference, out Assembly asm);
                 if (asm == null) {
                     foreach (string found in FindAssemblyPath(reference)) {
                         asm = LoadFile(found);
@@ -161,8 +160,7 @@ namespace IronPythonCompiler {
                 references.Add(asm);
             } else {
                 foreach (string file in files) {
-                    Assembly asm;
-                    if (!cache.TryGetValue(file, out asm)) {
+                    if (!cache.TryGetValue(file, out Assembly asm)) {
                         asm = LoadFile(file);
                     }
                     references.Add(asm);

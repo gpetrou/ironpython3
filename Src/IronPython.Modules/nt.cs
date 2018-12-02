@@ -347,7 +347,7 @@ namespace IronPython.Modules {
 #endif
 
         public static PythonList listdir(CodeContext/*!*/ context, [NotNull]string path) {
-            if (path == String.Empty) {
+            if (string.IsNullOrEmpty(path)) {
                 throw PythonExceptions.CreateThrowable(WindowsError, PythonExceptions._OSError.ERROR_PATH_NOT_FOUND, "The system cannot find the path specified: ''", null, PythonExceptions._OSError.ERROR_PATH_NOT_FOUND);
             }
 

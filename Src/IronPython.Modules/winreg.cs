@@ -506,14 +506,11 @@ namespace IronPython.Modules {
             if (string.IsNullOrEmpty(computerName))
                 computerName = string.Empty;
 
-            RegistryKey newKey = null;
+            RegistryKey newKey;
             try {
-                if (computerName == string.Empty) {
-                    newKey = RegistryKey.OpenBaseKey(MapSystemKey(key), RegistryView.Default);
-                }
-                else {
-                    newKey = RegistryKey.OpenRemoteBaseKey(MapSystemKey(key), computerName);
-                }
+                newKey = string.IsNullOrEmpty(computerName)
+                    ? RegistryKey.OpenBaseKey(MapSystemKey(key), RegistryView.Default)
+                    : RegistryKey.OpenRemoteBaseKey(MapSystemKey(key), computerName);
             }
             catch (IOException ioe) {
                 throw PythonExceptions.CreateThrowable(PythonExceptions.OSError, PythonExceptions._OSError.ERROR_BAD_NETPATH, ioe.Message, null, PythonExceptions._OSError.ERROR_BAD_NETPATH);

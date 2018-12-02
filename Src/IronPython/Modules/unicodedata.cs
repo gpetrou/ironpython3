@@ -387,13 +387,13 @@ namespace IronPython.Modules {
             Decomposition_Type = info[PropertyIndex.Decomposition_Type];
 
             string nvdes = info[PropertyIndex.Numeric_Value_Decimal];
-            Numeric_Value_Decimal = nvdes != "" ? (int?)int.Parse(nvdes) : null;
+            Numeric_Value_Decimal = !string.IsNullOrEmpty(nvdes) ? (int?)int.Parse(nvdes) : null;
 
             string nvdis = info[PropertyIndex.Numeric_Value_Digit];
-            Numeric_Value_Digit = nvdis != "" ? (int?)int.Parse(nvdis) : null;
+            Numeric_Value_Digit = !string.IsNullOrEmpty(nvdis) ? (int?)int.Parse(nvdis) : null;
 
             string nvns = info[PropertyIndex.Numeric_Value_Numeric];
-            if (nvns != "") {
+            if (nvns.Length != 0) {
                 string[] nvna = nvns.Split(new char[] { '/' });
                 double num = double.Parse(nvna[0]);
                 if (nvna.Length > 1) {

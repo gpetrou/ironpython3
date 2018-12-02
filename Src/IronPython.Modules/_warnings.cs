@@ -88,7 +88,7 @@ namespace IronPython.Modules {
             }
 
             filename = globals.get("__file__") as string;
-            if (filename == null || filename == "") {
+            if (!string.IsNullOrEmpty(filename)) {
                 if (module == "__main__") {
                     if (argv != null && argv.Count > 0) {
                         filename = argv[0] as string;
@@ -97,7 +97,7 @@ namespace IronPython.Modules {
                         filename = "__main__";
                     }
                 }
-                if (filename == null || filename == "") {
+                if (!string.IsNullOrEmpty(filename)) {
                     filename = module;
                 }
             }
@@ -114,7 +114,7 @@ namespace IronPython.Modules {
             string text; // message text
 
             if (string.IsNullOrEmpty(module)) {
-                module = (filename == null || filename == "") ? "<unknown>" : filename;
+                module = string.IsNullOrEmpty(filename) ? "<unknown>" : filename;
                 if (module.EndsWith(".py")) {
                     module = module.Substring(0, module.Length - 3);
                 }

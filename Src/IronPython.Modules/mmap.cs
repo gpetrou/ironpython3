@@ -135,7 +135,7 @@ namespace IronPython.Modules {
                 }
 
                 // .NET throws on an empty tagname, but CPython treats it as null.
-                _mapName = tagname == "" ? null : tagname;
+                _mapName = string.IsNullOrEmpty(tagname) ? null : tagname;
 
                 if (fileno == -1 || fileno == 0) {
                     // Map anonymous memory that is not tied to a file.
@@ -356,7 +356,7 @@ namespace IronPython.Modules {
                 start = PythonOps.FixSliceIndex(start, _view.Capacity);
                 end = PythonOps.FixSliceIndex(end, _view.Capacity);
 
-                if (s == "") {
+                if (string.IsNullOrEmpty(s)) {
                     return start <= end ? ReturnLong(start) : -1;
                 }
 
@@ -626,7 +626,7 @@ namespace IronPython.Modules {
                 start = PythonOps.FixSliceIndex(start, _view.Capacity);
                 end = PythonOps.FixSliceIndex(end, _view.Capacity);
 
-                if (s == "") {
+                if (string.IsNullOrEmpty(s)) {
                     return start <= end ? ReturnLong(start) : -1;
                 }
 

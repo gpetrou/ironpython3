@@ -79,7 +79,7 @@ If locale is None then the current setting is returned.
                 return li.GetLocale(context, category);
             }
             //  An empty string specifies the user’s default settings.
-            if (locale == "") {
+            if (locale.Length == 0) {
                 locale = GetDefaultLocale();
             }
 

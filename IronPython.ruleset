@@ -134,7 +134,7 @@
     <Rule Id="CA1815" Action="None" />
     <Rule Id="CA1816" Action="None" />
     <Rule Id="CA1819" Action="None" />
-    <Rule Id="CA1820" Action="None" />
+    <Rule Id="CA1820" Action="Error" />
     <Rule Id="CA1821" Action="Error" />
     <Rule Id="CA1822" Action="None" />
     <Rule Id="CA1823" Action="None" />
@@ -230,7 +230,6 @@
     <Rule Id="CA2200" Action="None" />
   </Rules>
   <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
-    <Rule Id="CA1820" Action="None" />
     <Rule Id="CA1813" Action="None" />
     <Rule Id="CA2208" Action="None" />
   </Rules>

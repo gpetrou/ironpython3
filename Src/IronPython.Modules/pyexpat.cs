@@ -421,14 +421,14 @@ namespace IronPython.Modules {
 
                 while (xmlReader.MoveToNextAttribute()) {
                     if (namespace_separator != null
-                        && (xmlReader.Prefix == "xmlns" || xmlReader.Prefix == string.Empty && xmlReader.LocalName == "xmlns")) {
-                        var prefix = xmlReader.Prefix == string.Empty ? string.Empty : xmlReader.LocalName;
+                        && (xmlReader.Prefix == "xmlns" || string.IsNullOrEmpty(xmlReader.Prefix) && xmlReader.LocalName == "xmlns")) {
+                        var prefix = string.IsNullOrEmpty(xmlReader.Prefix) ? string.Empty : xmlReader.LocalName;
                         var uri = xmlReader.Value;
                         ns_stack.Push(prefix);
                         var startNamespaceDeclHandler = StartNamespaceDeclHandler;
                         if (startNamespaceDeclHandler != null) {
                             FlushBuffer();
-                            startNamespaceDeclHandler(prefix == string.Empty ? null : prefix, uri);
+                            startNamespaceDeclHandler(string.IsNullOrEmpty(prefix) ? null : prefix, uri);
                         }
                         continue;
                     }
@@ -469,7 +469,7 @@ namespace IronPython.Modules {
                     var endNamespaceDeclHandler = EndNamespaceDeclHandler;
                     if (endNamespaceDeclHandler != null) {
                         FlushBuffer();
-                        endNamespaceDeclHandler(prefix == string.Empty ? null : prefix);
+                        endNamespaceDeclHandler(prefix.Length == 0 ? null : prefix);
                     }
                 }
             }

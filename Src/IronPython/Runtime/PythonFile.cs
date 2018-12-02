@@ -1117,12 +1117,11 @@ namespace IronPython.Runtime {
                 throw PythonOps.TypeError("mode must be string, not None");
             }
 
-            if (mode == "") {
+            if (mode.Length == 0) {
                 throw PythonOps.ValueError("empty mode string");
             }
 
-            bool seekEnd;
-            TranslateAndValidateMode(mode, out fmode, out faccess, out seekEnd);
+            TranslateAndValidateMode(mode, out fmode, out faccess, out bool seekEnd);
 
             try {
                 Stream stream;

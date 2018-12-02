@@ -1957,7 +1957,7 @@ namespace IronPython.Modules {
 
                 if (encoding == null) {
                     encoding = PythonLocale.PreferredEncoding;
-                    if (encoding == "") {
+                    if (encoding.Length == 0) {
                         encoding = "ascii";
                     }
                 }
@@ -1978,7 +1978,7 @@ namespace IronPython.Modules {
                 _readUniversal = string.IsNullOrEmpty(newline);
                 _readTranslate = newline == null;
                 _readNL = newline;
-                _writeTranslate = newline != "";
+                _writeTranslate = !string.IsNullOrEmpty(newline);
                 _writeNL = string.IsNullOrEmpty(newline) ? System.Environment.NewLine : newline;
 
                 _decodedChars = "";
